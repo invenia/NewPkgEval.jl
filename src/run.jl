@@ -4,7 +4,7 @@
 Download the specified version of Julia using the information provided in `Versions.toml`.
 """
 function install_julia(version::VersionNumber)
-    for (ver, data) in TOML.parsefile(depsdir(), "Versions.toml")
+    for (ver, data) in TOML.parsefile(joinpath(depsdir(), "Versions.toml"))
         VersionNumber(ver) == version || continue
         jlpath = juliapath(version)
         if haskey(data, "url")
