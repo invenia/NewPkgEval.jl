@@ -141,7 +141,7 @@ function runall!(dg::DependencyGraph, ninstances::Int; julia=v"1.0", depwarns=fa
                     end
                     print(String(take!(buf)))
                     sleep(1)
-                    print(io, CSI, instances + 1, "A", CSI, "1G", CSI, "0J")
+                    print(io, CSI, ninstances + 1, "A", CSI, "1G", CSI, "0J")
                 end
                 stopwork!()
                 println("done")
@@ -201,7 +201,7 @@ function runall!(dg::DependencyGraph, ninstances::Int; julia=v"1.0", depwarns=fa
                         pkg = dg.packages[pkgno]
                         running[i] = Symbol(pkg.name)
                         times[i] = now()
-                        didpass = runtest(pkg, version=version, obtain=false, depwarns=depwarns)
+                        didpass = runtest(pkg, julia=julia, obtain=false, depwarns=depwarns)
                         dg.results[pkgno] = didpass ? passed : failed
                         running[i] = nothing
                         put!(completed, pkgno)
