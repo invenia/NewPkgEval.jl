@@ -69,7 +69,7 @@ function runtest(pkg::Package; julia=v"1.0", depwarns=false, kwargs...)
     end
 end
 
-function runall!(dg::DependencyGraph, ininstances::Int; julia=v"1.0", depwarns=false, kwargs...)
+function runall!(dg::DependencyGraph, ninstances::Int; julia=v"1.0", depwarns=false, kwargs...)
     install_julia(julia)
 
     frontier = BitSet()
