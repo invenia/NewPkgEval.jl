@@ -60,7 +60,7 @@ function runtest(pkg::Package; julia=v"1.0", depwarns=false, kwargs...)
     arg = "using Pkg; eval($(repr(c)))"
     try
         open(joinpath(logdir, pkg.name * ".log"), "w") do f
-            run_julia(`$(depwarns ? `--depwarn=error` : ``) -e $arg`;
+            run_julia(`$(depwarns ? "--depwarn=error" : "") -e $arg`;
                       version=julia, kwargs..., stdout=f, stderr=f)
         end
         return true
